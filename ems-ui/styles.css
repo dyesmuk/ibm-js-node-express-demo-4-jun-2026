@@ -1,0 +1,650 @@
+/* ── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ :root {
+  --bg:        #0f172a;
+  --surface:   #1e293b;
+  --border:    #334155;
+  --text:      #f1f5f9;
+  --muted:     #94a3b8;
+  --accent:    #3b82f6;
+  --accent-bg: #1e3a8a;
+  --danger:    #ef4444;
+  --success:   #22c55e;
+  --warn:      #f59e0b;
+  --sidebar-w: 200px;
+  --topbar-h:  52px;
+  --radius:    6px;
+  --mono:      'JetBrains Mono', 'Fira Mono', 'Consolas', monospace;
+}
+
+
+html {
+  font-size: 14px;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Connection Status Bar (Socket.io signature element) ──── */
+header {
+  height: 3px;
+  background: var(--border);
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.4s;
+}
+
+header[data-status="connected"]    { background: var(--success); }
+header[data-status="disconnected"] { background: var(--danger); }
+header[data-status="connecting"]   { background: var(--warn); animation: pulse 1.2s infinite; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+/* ── App Shell ───────────────────────────────────────────── */
+section {          /* wraps sidebar + main */
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────── */
+nav {
+  width: var(--sidebar-w);
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+
+nav > span {          /* logo / app name */
+  display: block;
+  padding: 16px 20px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+}
+
+nav > a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 20px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  border-left: 3px solid transparent;
+  transition: color 0.15s, background 0.15s;
+  cursor: pointer;
+}
+
+nav > a:hover {
+  color: var(--text);
+  background: var(--bg);
+}
+
+nav > a[data-active] {
+  color: var(--accent);
+  background: var(--accent-bg);
+  border-left-color: var(--accent);
+}
+
+nav > a > svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+nav > footer {       /* bottom of sidebar: user info */
+  margin-top: auto;
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+nav > footer > strong {
+  display: block;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+nav > footer > button {
+  margin-top: 8px;
+  width: 100%;
+}
+
+/* ── Main Area ───────────────────────────────────────────── */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* topbar */
+main > div {     /* #topbar */
+  height: var(--topbar-h);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+main > div > h1 {
+  font-size: 15px;
+  font-weight: 600;
+  flex: 1;
+}
+
+main > div > span {   /* socket status label */
+  font-size: 11px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+main > div > span > b {  /* coloured dot */
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+main > div > span[data-status="connected"]    > b { background: var(--success); }
+main > div > span[data-status="disconnected"] > b { background: var(--danger); }
+main > div > span[data-status="connecting"]   > b { background: var(--warn); }
+
+/* content pane */
+main > article {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+/* ── Login Page ──────────────────────────────────────────── */
+body > form {        /* login form, shown when not authed */
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  z-index: 100;
+}
+
+body > form > fieldset {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 40px;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+body > form > fieldset > legend {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 0 0 4px;
+  margin-bottom: 4px;
+  color: var(--text);
+  border: none;
+}
+
+body > form > fieldset > p {    /* subtitle */
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: -8px;
+}
+
+/* ── Forms (generic) ─────────────────────────────────────── */
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+button {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 600;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+}
+
+button:hover   { opacity: 0.85; }
+button:active  { opacity: 0.7; }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+button[data-variant="ghost"] {
+  background: transparent;
+  color: var(--muted);
+  border-color: var(--border);
+}
+
+button[data-variant="ghost"]:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+
+button[data-variant="danger"] {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: #fff;
+}
+
+button[data-variant="sm"] {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+/* ── Tables ──────────────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+thead {
+  background: var(--bg);
+}
+
+th {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  color: var(--text);
+}
+
+tr:last-child > td { border-bottom: none; }
+
+tbody > tr:hover { background: var(--bg); }
+
+/* ── Badges (via data attrs on td/span) ─────────────────── */
+td > em, span[data-badge] {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  font-style: normal;
+  background: var(--border);
+  color: var(--muted);
+  text-transform: capitalize;
+}
+
+span[data-badge="active"],
+span[data-badge="completed"] { background: #dcfce7; color: #15803d; }
+
+span[data-badge="inactive"],
+span[data-badge="on-hold"]   { background: #fee2e2; color: #b91c1c; }
+
+span[data-badge="planning"]  { background: #fef9c3; color: #a16207; }
+
+span[data-badge="admin"]     { background: #ede9fe; color: #6d28d9; }
+span[data-badge="manager"]   { background: #dbeafe; color: #1d4ed8; }
+span[data-badge="employee"]  { background: var(--bg); color: var(--muted); }
+
+/* ── Toolbar (search + actions row above table) ──────────── */
+nav + main > article > div {   /* toolbar */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+nav + main > article > div > input {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+nav + main > article > div > select {
+  width: auto;
+}
+
+/* ── Pagination ──────────────────────────────────────────── */
+nav + main > article > footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+nav + main > article > footer > div {
+  display: flex;
+  gap: 6px;
+}
+
+/* ── Modal ───────────────────────────────────────────────── */
+dialog {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0;
+  width: 480px;
+  max-width: 95vw;
+  background: var(--surface);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+}
+
+dialog::backdrop {
+  background: rgba(0,0,0,0.35);
+}
+
+dialog > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  height: auto;
+  background: none;
+  animation: none;
+}
+
+dialog > header > h2 {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+dialog > header > button {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 18px;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+dialog > form {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: static;
+  background: none;
+  border: none;
+  width: auto;
+}
+
+dialog > form > fieldset {
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+dialog > form > footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 0;
+  border: none;
+  background: none;
+  margin-top: 4px;
+}
+
+/* ── Toast Notifications ─────────────────────────────────── */
+aside {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 999;
+  pointer-events: none;
+}
+
+aside > output {
+  display: block;
+  padding: 10px 16px;
+  background: var(--text);
+  color: #fff;
+  border-radius: var(--radius);
+  font-size: 13px;
+  max-width: 300px;
+  pointer-events: auto;
+  animation: slide-in 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+aside > output[data-type="error"]   { background: var(--danger); }
+aside > output[data-type="success"] { background: var(--success); }
+aside > output[data-type="warn"]    { background: var(--warn); }
+
+@keyframes slide-in {
+  from { transform: translateX(20px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+/* ── Stats Cards (Dashboard) ─────────────────────────────── */
+main > article > ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+  list-style: none;
+  margin-bottom: 24px;
+}
+
+main > article > ul > li {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+}
+
+main > article > ul > li > span {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+main > article > ul > li > strong {
+  display: block;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--accent);
+  font-family: var(--mono);
+}
+
+main > article > ul > li > small {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ── Section heading ─────────────────────────────────────── */
+main > article > h2 {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  margin-bottom: 12px;
+  margin-top: 24px;
+}
+
+main > article > h2:first-child { margin-top: 0; }
+
+/* ── Empty state ─────────────────────────────────────────── */
+main > article > p {
+  color: var(--muted);
+  font-size: 13px;
+  padding: 40px 0;
+  text-align: center;
+}
+
+/* ── Detail key-value grid ───────────────────────────────── */
+main > article > dl {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+main > article > dl > dt {
+  padding: 10px 16px;
+  background: var(--bg);
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+
+main > article > dl > dd {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+main > article > dl > dt:last-of-type,
+main > article > dl > dd:last-of-type {
+  border-bottom: none;
+}
+
+/* ── Scrollbars ──────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+  nav { width: 48px; }
+  nav > span, nav > a > span, nav > footer > strong, nav > footer > small { display: none; }
+  nav > a { justify-content: center; padding: 12px; }
+  dialog { width: 95vw; }
+}
+
+
+/* Dark mode enhancements */
+html,
+body {
+    background: var(--bg);
+    color: var(--text);
+}
+
+thead { background: #172033; }
+
+tbody > tr:hover { background: #243244; }
+
+input,
+select,
+textarea {
+    background: #273549;
+    border-color: var(--border);
+    color: var(--text);
+}
+
+input::placeholder,
+textarea::placeholder { color: var(--muted); }
+
+button[data-variant="ghost"] {
+    background: transparent;
+    color: var(--muted);
+}
+
+button[data-variant="ghost"]:hover {
+    background: #273549;
+    color: var(--text);
+}
+
+dialog { box-shadow: 0 24px 80px rgba(0,0,0,.6); }
+
+::-webkit-scrollbar-thumb { background: #475569; }
+
+aside > output { background: #111827; }
