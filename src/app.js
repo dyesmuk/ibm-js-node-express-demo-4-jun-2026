@@ -34,7 +34,7 @@ setupSocketIO(io);
 connectDB();
 
 // ── Global Middleware ─────────────────────────────────────────
-app.use(cors({ origin: 'http://127.0.0.1:5500' }));
+app.use(cors({ origin: '*' }));
 app.use(express.json());                        // parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // parse form data
 

@@ -13,7 +13,7 @@ const upload = require('../middleware/upload');
 const { parseQuery, paginatedResponse } = require('../utils/queryHelper');
 
 // All routes require authentication
-router.use(authenticate);
+// router.use(authenticate);
 
 // ── GET /api/employees ────────────────────────────────────────
 // Sorting, Pagination, Filtering demo

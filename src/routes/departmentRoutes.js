@@ -9,7 +9,7 @@ const Employee = require('../models/Employee');
 const { authenticate, authorize } = require('../middleware/auth');
 const { parseQuery, paginatedResponse } = require('../utils/queryHelper');
 
-router.use(authenticate);
+// router.use(authenticate);
 
 // ── GET /api/departments ──────────────────────────────────────
 router.get('/', async (req, res, next) => {
