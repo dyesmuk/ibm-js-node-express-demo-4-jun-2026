@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Engineering",
+    "code": "ENG",
+    "location": "Bengaluru",
+    "budget": 8000000,
+    "description": "Software development and architecture"
+  },
+  {
+    "name": "Human Resources",
+    "code": "HR",
+    "location": "Mumbai",
+    "budget": 2000000,
+    "description": "Talent acquisition and employee welfare"
+  },
+  {
+    "name": "Finance",
+    "code": "FIN",
+    "location": "Pune",
+    "budget": 3000000,
+    "description": "Financial planning and accounting"
+  },
+  {
+    "name": "Marketing",
+    "code": "MKT",
+    "location": "Delhi",
+    "budget": 2500000,
+    "description": "Brand, campaigns and digital marketing"
+  },
+  {
+    "name": "Sales",
+    "code": "SAL",
+    "location": "Hyderabad",
+    "budget": 4000000,
+    "description": "Enterprise and SMB sales"
+  },
+  {
+    "name": "Quality Assurance",
+    "code": "QA",
+    "location": "Bengaluru",
+    "budget": 1500000,
+    "description": "Testing, automation and quality control"
+  },
+  {
+    "name": "DevOps",
+    "code": "OPS",
+    "location": "Chennai",
+    "budget": 2000000,
+    "description": "Infrastructure, CI/CD and cloud operations"
+  },
+  {
+    "name": "Product Management",
+    "code": "PM",
+    "location": "Bengaluru",
+    "budget": 1800000,
+    "description": "Product strategy and roadmap"
+  },
+  {
+    "name": "Legal",
+    "code": "LEG",
+    "location": "Mumbai",
+    "budget": 1200000,
+    "description": "Compliance, contracts and legal affairs"
+  },
+  {
+    "name": "Customer Support",
+    "code": "SUP",
+    "location": "Pune",
+    "budget": 1000000,
+    "description": "L1/L2 customer support and success"
+  }
+]

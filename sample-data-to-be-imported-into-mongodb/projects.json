@@ -1,0 +1,282 @@
+[
+  {
+    "name": "EMS Cloud Migration",
+    "deptCode": "OPS",
+    "status": "active",
+    "budget": 3500000,
+    "tags": [
+      "cloud",
+      "aws",
+      "migration"
+    ],
+    "description": "Migrate on-prem EMS infrastructure to AWS cloud",
+    "startDate": "2024-01-01",
+    "endDate": "2025-06-30"
+  },
+  {
+    "name": "HR Self-Service Portal",
+    "deptCode": "HR",
+    "status": "active",
+    "budget": 800000,
+    "tags": [
+      "portal",
+      "react",
+      "hr"
+    ],
+    "description": "Employee self-service portal for HR operations",
+    "startDate": "2024-01-01",
+    "endDate": "2025-06-30"
+  },
+  {
+    "name": "Sales CRM Integration",
+    "deptCode": "SAL",
+    "status": "active",
+    "budget": 1200000,
+    "tags": [
+      "crm",
+      "salesforce",
+      "api"
+    ],
+    "description": "Integrate internal tools with Salesforce CRM",
+    "startDate": "2024-01-01",
+    "endDate": "2025-06-30"
+  },
+  {
+    "name": "Mobile App v2.0",
+    "deptCode": "ENG",
+    "status": "active",
+    "budget": 2500000,
+    "tags": [
+      "mobile",
+      "react-native",
+      "ios"
+    ],
+    "description": "Rebuild mobile app with React Native",
+    "startDate": "2024-01-01",
+    "endDate": "2025-06-30"
+  },
+  {
+    "name": "AI Chatbot for Support",
+    "deptCode": "SUP",
+    "status": "planning",
+    "budget": 1800000,
+    "tags": [
+      "ai",
+      "nlp",
+      "chatbot"
+    ],
+    "description": "AI-powered first-line customer support bot",
+    "startDate": "2025-04-01",
+    "endDate": "2025-12-31"
+  },
+  {
+    "name": "Finance Reporting Dashboard",
+    "deptCode": "FIN",
+    "status": "active",
+    "budget": 900000,
+    "tags": [
+      "dashboard",
+      "bi",
+      "reporting"
+    ],
+    "description": "Real-time financial reporting and analytics",
+    "startDate": "2024-01-01",
+    "endDate": "2025-06-30"
+  },
+  {
+    "name": "Brand Refresh Campaign",
+    "deptCode": "MKT",
+    "status": "completed",
+    "budget": 600000,
+    "tags": [
+      "branding",
+      "design",
+      "campaign"
+    ],
+    "description": "Company-wide brand identity refresh",
+    "startDate": "2023-01-01",
+    "endDate": "2024-12-31"
+  },
+  {
+    "name": "DevOps Pipeline Overhaul",
+    "deptCode": "OPS",
+    "status": "active",
+    "budget": 1100000,
+    "tags": [
+      "cicd",
+      "jenkins",
+      "kubernetes"
+    ],
+    "description": "Upgrade CI/CD pipelines to Kubernetes-based",
+    "startDate": "2024-01-01",
+    "endDate": "2025-06-30"
+  },
+  {
+    "name": "Compliance Audit System",
+    "deptCode": "LEG",
+    "status": "planning",
+    "budget": 700000,
+    "tags": [
+      "compliance",
+      "audit",
+      "legal"
+    ],
+    "description": "Automated compliance tracking and audit trails",
+    "startDate": "2025-04-01",
+    "endDate": "2025-12-31"
+  },
+  {
+    "name": "QA Test Automation Framework",
+    "deptCode": "QA",
+    "status": "active",
+    "budget": 500000,
+    "tags": [
+      "selenium",
+      "pytest",
+      "automation"
+    ],
+    "description": "Build reusable test automation framework",
+    "startDate": "2024-01-01",
+    "endDate": "2025-06-30"
+  },
+  {
+    "name": "Product Analytics Platform",
+    "deptCode": "PM",
+    "status": "active",
+    "budget": 1400000,
+    "tags": [
+      "analytics",
+      "mixpanel",
+      "events"
+    ],
+    "description": "Unified product analytics and event tracking",
+    "startDate": "2024-01-01",
+    "endDate": "2025-06-30"
+  },
+  {
+    "name": "Onboarding Automation",
+    "deptCode": "HR",
+    "status": "planning",
+    "budget": 400000,
+    "tags": [
+      "automation",
+      "workflow",
+      "hr"
+    ],
+    "description": "Automate new employee onboarding workflows",
+    "startDate": "2025-04-01",
+    "endDate": "2025-12-31"
+  },
+  {
+    "name": "API Gateway Revamp",
+    "deptCode": "ENG",
+    "status": "on-hold",
+    "budget": 850000,
+    "tags": [
+      "api",
+      "gateway",
+      "security"
+    ],
+    "description": "Centralise all APIs through a managed gateway",
+    "startDate": "2024-06-01",
+    "endDate": "2025-09-30"
+  },
+  {
+    "name": "Marketing SEO Overhaul",
+    "deptCode": "MKT",
+    "status": "completed",
+    "budget": 300000,
+    "tags": [
+      "seo",
+      "content",
+      "marketing"
+    ],
+    "description": "Site-wide SEO audit and content restructuring",
+    "startDate": "2023-01-01",
+    "endDate": "2024-12-31"
+  },
+  {
+    "name": "Data Warehouse Setup",
+    "deptCode": "ENG",
+    "status": "planning",
+    "budget": 2200000,
+    "tags": [
+      "data",
+      "warehouse",
+      "snowflake"
+    ],
+    "description": "Build centralised data warehouse on Snowflake",
+    "startDate": "2025-04-01",
+    "endDate": "2025-12-31"
+  },
+  {
+    "name": "Customer Success Dashboard",
+    "deptCode": "SUP",
+    "status": "active",
+    "budget": 650000,
+    "tags": [
+      "dashboard",
+      "support",
+      "cs"
+    ],
+    "description": "CS team dashboard for ticket and health tracking",
+    "startDate": "2024-01-01",
+    "endDate": "2025-06-30"
+  },
+  {
+    "name": "Security Pen Testing",
+    "deptCode": "OPS",
+    "status": "completed",
+    "budget": 400000,
+    "tags": [
+      "security",
+      "pentest",
+      "infosec"
+    ],
+    "description": "External penetration testing of all systems",
+    "startDate": "2023-01-01",
+    "endDate": "2024-12-31"
+  },
+  {
+    "name": "Sales Training Platform",
+    "deptCode": "SAL",
+    "status": "planning",
+    "budget": 550000,
+    "tags": [
+      "lms",
+      "training",
+      "sales"
+    ],
+    "description": "Internal LMS for sales team upskilling",
+    "startDate": "2025-04-01",
+    "endDate": "2025-12-31"
+  },
+  {
+    "name": "React Component Library",
+    "deptCode": "ENG",
+    "status": "active",
+    "budget": 350000,
+    "tags": [
+      "react",
+      "ui",
+      "design-system"
+    ],
+    "description": "Shared React component library for all frontends",
+    "startDate": "2024-01-01",
+    "endDate": "2025-06-30"
+  },
+  {
+    "name": "Performance Review System",
+    "deptCode": "HR",
+    "status": "on-hold",
+    "budget": 480000,
+    "tags": [
+      "hr",
+      "performance",
+      "appraisal"
+    ],
+    "description": "Automated annual performance review system",
+    "startDate": "2024-06-01",
+    "endDate": "2025-09-30"
+  }
+]
